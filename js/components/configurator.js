@@ -5,26 +5,32 @@
 var Configurator = {
     defaultDegreeConf: [{
         desc: '普通',
+        color:'black',
         buyAmount: 100,
         saleAmount: 0,
     },{
         desc: '稀有',
+        color:'green',
         buyAmount: 100,
         saleAmount: 0,
     },{
         desc: '卓越',
+        color:'#0000ff',
         buyAmount: 100,
         saleAmount: 0,
     },{
         desc: '史诗',
+        color:'#db70db',
         buyAmount: 100,
         saleAmount: 0,
     },{
         desc: '神话',
+        color:'#871f78',
         buyAmount: 100,
         saleAmount: 0,
     },{
         desc: '传说',
+        color:'#ff7f00',
         buyAmount: 100,
         saleAmount: 0,
     }],
@@ -36,7 +42,8 @@ var Configurator = {
         var th = '';
         $.each(degreeConf,function(k, v) {
             th += '<tr class="confItem">\
-                    <td><span>' + v.desc + '</span> <input type="text" name="id" value="' + k + '" style="display:none;" /></td>\
+                    <td><span>' + v.desc + '</span>\<input type="text" name="id" value="' + k + '" style="display:none;" /></td>\
+                    <td><input type="text" name="color" style="color:' + v.color + ';" value="' + v.color + '"/></td>\
                     <td><input type="text" name="buyAmount" value="' + v.buyAmount + '" class="editBox input-large" /></td>\
                 </tr>';
         });
@@ -51,8 +58,9 @@ var Configurator = {
 
                 var id = $(item).find("input[name=id]").val();
                 var buyAmount = $(item).find("input[name=buyAmount]").val();
-
+		var color = $(item).find("input[name=color]").val();
                 degreeConf[id].buyAmount = buyAmount;
+		degreeConf[id].color = color;
             }
 			
             Utils.setStorage("degreeConf", degreeConf);
